@@ -1,22 +1,28 @@
 var coinChange = function(coins, amount) {
-    var result = _coinChange(coins,amount)
+    var result = target(coins, amount);
     if(result === Infinity){
-        return -1
-    } else {
-        return result
+        return -1;
+    }else{
+        return result;
     }
 };
 
-var _coinChange = function(coins, amount, memo = {}){
-    if(amount === 0) return 0
-    if(amount < 0 ) return Infinity
-    if(amount in memo) return memo[amount]
-    
-    var min = Infinity
-    for(let coin of coins){
-        var minChange = 1 + _coinChange(coins, amount - coin, memo)
-        min = Math.min(min, minChange)
+function target(coins, finalAmount, memo = {}){
+    if(finalAmount === 0){
+        return 0;
     }
-    memo[amount] = min
-    return min
+    if(finalAmount < 0){
+        return Infinity;
+    }
+    if(finalAmount in memo) {
+        return memo[finalAmount]
+    }
+    var min  = Infinity;
+    for(let coin of coins){
+        var minChange  = 1 + target(coins, finalAmount - coin, memo)
+        min  = Math.min(min, minChange );
+
+    }
+    memo[finalAmount] = min
+    return min;
 }
