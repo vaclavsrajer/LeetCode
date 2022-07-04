@@ -22,17 +22,25 @@ function mergeSort(list1, list2){
     
     while(list1.length > list1Index && list2.length > list2Index){
         if(list1[list1Index] > list2[list2Index]){
-            sortedArray[sortedArrayIndex++] = list2[list2Index++];
+            sortedArray[sortedArrayIndex] = list2[list2Index];
+            sortedArrayIndex++;
+            list2Index++;
         }else {
-            sortedArray[sortedArrayIndex++] = list1[list1Index++];
+            sortedArray[sortedArrayIndex] = list1[list1Index];
+            sortedArrayIndex++;
+            list1Index++;
         }
     }
     
     while(list1.length > list1Index){
-        sortedArray[sortedArrayIndex++] = list1[list1Index++];
+        sortedArray[sortedArrayIndex] = list1[list1Index];
+        sortedArrayIndex++;
+        list1Index++;
     }
     while(list2.length > list2Index){
-        sortedArray[sortedArrayIndex++] = list2[list2Index++];
+        sortedArray[sortedArrayIndex] = list2[list2Index];
+        sortedArrayIndex++;
+        list2Index++;
     }
     return sortedArray;
     
