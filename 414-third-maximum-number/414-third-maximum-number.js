@@ -3,31 +3,17 @@
  * @return {number}
  */
 var thirdMax = function(nums) {
-    if(nums.length <= 2){
-        return nums.sort((a,b)=> a-b)[nums.length-1];
-    }
-    let distinct = nums[0];
-    let count = 1;
-    const object = {};
-    const newArray = [];
-    
+   const set = new Set();
     for(const num of nums){
-        if(!object[num]){
-            newArray.push(num);
+        set.add(num);
+        if(set.size > 3){
+              set.delete(Math.min(...Array.from(set.values())))          
         }
     }
     
-    newArray.sort((a,b) => b-a);
-    
-    for(let i = 1; i < newArray.length; i++){
-        if(newArray[i-1] !== newArray[i]){
-            count++;
-            distinct=newArray[i];
-        }
-        if(count === 3){
-            return distinct;
-        }
+    if(set.size === 3){
+        return Math.min(...Array.from(set.values()));
     }
     
-    return newArray.sort((a,b)=> a-b)[newArray.length -1];
+    return Math.max(...Array.from(set.values()))
 };
