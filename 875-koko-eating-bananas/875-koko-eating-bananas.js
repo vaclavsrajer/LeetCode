@@ -6,25 +6,24 @@
 var minEatingSpeed = function(piles, h) {
     let leftPointer = 1;
     let rightPointer = Math.max(...piles);
-    let response = rightPointer;
+    let result = rightPointer;
     
     while(leftPointer <= rightPointer){
-        let mid = Math.floor((rightPointer+leftPointer) / 2) ;
-        let k = 0;
-        for(const bananas of piles){
-            k+= Math.ceil(bananas/mid);
-            if(k > h){
-                break
-            }
+        const mid = Math.floor((leftPointer + rightPointer) / 2);
+        let count = 0;
+        for(let bananas of piles){
+            count += Math.ceil(bananas / mid);
         }
-        if(k > h){
-            leftPointer = mid + 1; 
-        }else{
-            response = Math.min(response, mid)
+        if(count > h){
+            leftPointer = mid + 1;
+        }
+        else{
             rightPointer = mid - 1;
+            result = Math.min(mid,result);
         }
+        
     }
     
-    return response;
+    return result;
         
 };
