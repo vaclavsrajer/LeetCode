@@ -11,10 +11,9 @@ var checkIfPangram = function(sentence) {
             set.add(letter);
             count++;
         }
-    }
-    
-    if(count === 26){
-        return true;
+        if(count === 26){
+            return true;
+        }
     }
     return false;
 };
